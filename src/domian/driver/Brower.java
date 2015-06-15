@@ -75,6 +75,26 @@ public class Brower {
         return driver.getTitle();
     }
 
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public void back() {
+        driver.navigate().back();
+    }
+
+    public void forward() {
+        driver.navigate().forward();
+    }
+
+    public void refresh() {
+        driver.navigate().refresh();
+    }
+
+    public void maximize() {
+        driver.manage().window().maximize();
+    }
+
     public void close() {
         driver.close();
     }
