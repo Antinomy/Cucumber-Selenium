@@ -3,6 +3,7 @@ package domian.driver;
 
 import java.net.MalformedURLException;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -18,11 +19,12 @@ public class Brower {
 
     private WebDriver driver;
 
+    private static Logger logger = Logger.getLogger(Brower.class);
+
 
     public static Brower getInstance() throws MalformedURLException {
         if (instance == null) {
             instance = new Brower();
-            instance.open();
         }
         return instance;
     }
@@ -33,7 +35,7 @@ public class Brower {
      */
     @Before
     public void open() throws MalformedURLException {
-        System.out.println("Called open");
+        logger.debug("Called open");
         driver = new FirefoxDriver();
         driver.manage().deleteAllCookies();
     }
@@ -73,7 +75,7 @@ public class Brower {
         return driver.getTitle();
     }
 
-    public void exit() {
+    public void close() {
         driver.close();
     }
 }
