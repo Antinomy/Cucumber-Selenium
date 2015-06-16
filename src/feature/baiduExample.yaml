@@ -1,0 +1,6 @@
+
+baiduPage:
+  url: https://www.baidu.com
+  input_id: kw
+  searchBtn_id: su
+   
