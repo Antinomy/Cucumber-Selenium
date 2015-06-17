@@ -24,14 +24,13 @@ import static org.hamcrest.core.Is.is;
 public class BaiduExample_Test {
 
     public Brower brower;
-    private PageConfRepository ps;
+    private PageConfRepository page;
 
     private static Logger logger = Logger.getLogger(Brower.class);
 
     public BaiduExample_Test() throws Exception {
-        File directory = new File("");//设定为当前文件夹
-        String yamlFilePath = directory.getAbsolutePath()+"/src/feature/baiduExample.yaml";
-        ps = new PageConfRepository(yamlFilePath);
+
+        page = new PageConfRepository("baiduExample.yaml");
 
         brower = Brower.getInstance();
         brower.open();
@@ -41,15 +40,14 @@ public class BaiduExample_Test {
     public void go_to_baidu_com() throws MalformedURLException {
         logger.debug("打开浏览器到baidu.com");
 
-        brower.go(ps.getConf("baiduPage","url"));
+        brower.go(page.getConf("baiduPage", "url"));
     }
 
     @Given("^输入 \"(.*?)\"$")
     public void input_in_text(String keyWord) throws Throwable {
         logger.debug("输入 " + keyWord);
 
-        By by = By.id(ps.getConf("baiduPage","input_id"));
-        brower.inputText(by, keyWord);
+        brower.inputText(page.getId("baiduPage", "input_id"), keyWord);
 
     }
 
@@ -58,8 +56,7 @@ public class BaiduExample_Test {
     public void he_click_the_search_buttom() throws Throwable {
         logger.debug("点击百度一下");
 
-        By by = By.id(ps.getConf("baiduPage","searchBtn_id"));
-        brower.click(by);
+        brower.click(page.getId("baiduPage", "searchBtn_id"));
     }
 
 
