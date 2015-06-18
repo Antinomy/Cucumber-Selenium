@@ -28,5 +28,7 @@ public class PageConfigServiceTest {
         assertThat(page.getConf("baiduPage","searchBtn_id"),is("su"));
 
         assertThat(page.getId("baiduPage", "input_id"),is(By.id("kw")));
+        assertThat(page.getId("baiduPage", "input_xpath"),
+                is(By.id("/html/body/div[3]/div[1]/div/div[1]/div/form/span[1]/input")));
     }
 }

@@ -34,4 +34,9 @@ public class PageConfRepository {
         String idValue = getConf(page, id);
         return By.id(idValue);
     }
+
+    public By getXPath(String page, String xPath) {
+        String idValue = getConf(page, xPath);
+        return By.xpath(idValue);
+    }
 }

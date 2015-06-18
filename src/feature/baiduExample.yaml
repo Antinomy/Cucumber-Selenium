@@ -2,5 +2,6 @@
 baiduPage:
   url: https://www.baidu.com
   input_id: kw
+  input_xpath: /html/body/div[3]/div[1]/div/div[1]/div/form/span[1]/input
   searchBtn_id: su
    

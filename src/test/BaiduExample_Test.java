@@ -43,7 +43,7 @@ public class BaiduExample_Test {
         brower.go(page.getConf("baiduPage", "url"));
     }
 
-    @Given("^输入 \"(.*?)\"$")
+    @And("^输入 \"(.*?)\"$")
     public void input_in_text(String keyWord) throws Throwable {
         logger.debug("输入 " + keyWord);
 
