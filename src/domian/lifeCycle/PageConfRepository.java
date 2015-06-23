@@ -31,12 +31,22 @@ public class PageConfRepository {
     }
 
     public By getId(String page, String id) {
-        String idValue = getConf(page, id);
-        return By.id(idValue);
+        String conf = getConf(page, id);
+        return By.id(conf);
     }
 
     public By getXPath(String page, String xPath) {
-        String idValue = getConf(page, xPath);
-        return By.xpath(idValue);
+        String conf = getConf(page, xPath);
+        return By.xpath(conf);
+    }
+
+    public By getCSS(String page, String css) {
+        String conf = getConf(page, css);
+        return By.cssSelector(conf);
+    }
+
+    public By getClassName(String page, String className) {
+        String conf = getConf(page, className);
+        return By.className(conf);
     }
 }
