@@ -11,11 +11,14 @@ import java.util.Map;
  * Created by Antinomy on 15/6/16.
  */
 public class PageConfRepository {
-    Map map;
+    private Map map;
+    private String absolutePath = null;
 
     public PageConfRepository(String yamlFilePath) throws Exception {
         File directory = new File("");//设定为当前文件夹
-        yamlFilePath = directory.getAbsolutePath() + "/src/feature/" + yamlFilePath;
+        absolutePath = directory.getAbsolutePath();
+
+        yamlFilePath = absolutePath + "/src/feature/" + yamlFilePath;
 
         YamlReader reader = new YamlReader(new FileReader(yamlFilePath));
 
@@ -48,5 +51,10 @@ public class PageConfRepository {
     public By getClassName(String page, String className) {
         String conf = getConf(page, className);
         return By.className(conf);
+    }
+
+    public String getFilePath(String page, String fileName) {
+        String filePath = absolutePath + getConf(page,fileName);
+        return filePath;
     }
 }

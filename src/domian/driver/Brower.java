@@ -2,6 +2,7 @@ package domian.driver;
 
 
 import java.net.MalformedURLException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
@@ -10,6 +11,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -41,7 +43,11 @@ public class Brower {
     @Before
     public void open() throws MalformedURLException {
         logger.debug("Called open");
-        driver = new FirefoxDriver();
+
+        FirefoxProfile profile = new FirefoxProfile();
+        profile.setPreference("IsRelative", 0);
+
+        driver = new FirefoxDriver(profile);
         driver.manage().deleteAllCookies();
 
         wait = new WebDriverWait(driver, 10);
@@ -132,11 +138,42 @@ public class Brower {
         }
     }
 
+    public void logAllHyperLinkText() {
+
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+
+        for (WebElement ops : links) {
+            logger.info(ops.getText());
+        }
+
+    }
+
+    public void clickLinkText(String text) {
+        By target = By.linkText(text);
+        driver.findElement(target).click();
+    }
+
     public void switchFirstWindow() {
         for (String winHandle : driver.getWindowHandles()) {
-            logger.info("switched to " + winHandle);
-            driver.switchTo().window(winHandle);
+
+            switchToWindow(winHandle);
             return;
+        }
+    }
+
+    private void switchToWindow(String winHandle) {
+        logger.info("switched to " + winHandle);
+        driver.switchTo().window(winHandle);
+        logger.info(" on tittle : " + getTitle());
+    }
+
+    public void switchLastWindow() {
+        int size = driver.getWindowHandles().size();
+        if (size <= 1)
+            return;
+
+        for (String winHandle : driver.getWindowHandles()) {
+            switchToWindow(winHandle);
         }
     }
 
@@ -151,6 +188,13 @@ public class Brower {
 
     public void switchBack() {
         driver.switchTo().defaultContent();
+    }
+
+    public void uploadFile(By uploadBtn, String uploadFilePath) throws InterruptedException {
+        WebElement upload = driver.findElement(uploadBtn);
+
+        upload.sendKeys(uploadFilePath);
+        absolutelyWait(1);
     }
 
 }
