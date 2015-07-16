@@ -1,0 +1,30 @@
+
+local_any_firefox:
+  RunAt: local
+  Platform: any
+  BrowserName: firefox
+  Version: any
+
+local_mac_firefox:
+  RunAt: local
+  Platform: MAC
+  BrowserName: firefox
+  Version: 38
+
+local_mac_safari:
+  RunAt: local
+  Platform: MAC
+  BrowserName: safari
+  Version: 8
+
+local_mac_chrome:
+  RunAt: local
+  Platform: MAC
+  BrowserName: chrome
+  Version: any
+
+remote_any_firefox:
+  RunAt: http://localhost:4444/wd/hub
+  Platform: any
+  BrowserName: firefox
+  Version: any

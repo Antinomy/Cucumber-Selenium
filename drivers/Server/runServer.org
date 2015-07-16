@@ -1,0 +1,14 @@
+
+* hub & node
+ java -jar selenium-server-standalone-2.46.0.jar -role hub  -port 4444
+ java -jar selenium-server-standalone-2.46.0.jar -role node
+
+ # node with port
+ java -jar selenium-server-standalone-2.46.0.jar -role node -port 5555
+ java -jar selenium-server-standalone-2.46.0.jar -role node -port 5556
+ java -jar selenium-server-standalone-2.46.0.jar -role node -port 5557
+
+* reg node on hub
+
+  # CI Client
+  java -jar selenium-server-standalone-2.46.0.jar -role node  -hub http://192.168.0.1:4444/grid/register/

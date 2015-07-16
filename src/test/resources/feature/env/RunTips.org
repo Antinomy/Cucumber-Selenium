@@ -1,0 +1,11 @@
+
+
+* selenium打开firefox打开为导入向导问题解决
+# 解决方法：
+
+到firefox的profiles.ini所在文件中修改IsRelative=1->IsRelative=0
+C:\Users\{用户名}\AppData\Roaming\Mozilla\Firefox\profiles.ini
+
+* 设置运行时所需要的步骤
+    需要在运行界面的glue里 设置步骤所在的包／文件夹 ，多个文件夹用空格隔开。
+    e.g 需要world和customer里的步骤，就输入“world customer”
